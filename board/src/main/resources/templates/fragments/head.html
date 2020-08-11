@@ -1,0 +1,16 @@
+<html lagn="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+    <th:block th:fragment="headFragment">
+
+        <!-- Common CSS & JS -->
+        <link rel="stylesheet" th:href="@{/css/common/reset.css}" >
+        <link rel="stylesheet" th:href="@{/css/common/common.css}" >
+        <script th:src="@{/js/common/common.js}"></script>
+
+        <!-- Specific CSS & JS -->
+        <th:block layout:fragment="css"></th:block>
+        <th:block layout:fragment="script"></th:block>
+        
+    </th:block>
+
+</html>

@@ -1,0 +1,32 @@
+/* Body */
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100vh;
+}
+
+/* Header */
+header {
+    padding: 0.5rem 1rem;
+    border-bottom: 1px solid #ddd;
+    display: flex;
+    justify-content: space-between;
+}
+header h1 {
+    font-weight: bold;
+}
+header .header_menu {
+    display: flex;
+}
+
+/* Main Contents */
+main {
+    padding: 1rem;
+}
+
+/* Footer */
+footer {
+    padding: 0.5rem 1rem;
+    border-top: 1px solid #ddd;
+}
