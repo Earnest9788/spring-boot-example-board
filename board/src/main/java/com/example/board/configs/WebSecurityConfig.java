@@ -6,19 +6,25 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
 // https://stackoverflow.com/questions/40495244/too-many-redirects-with-own-login-form-spring-security
+// https://velog.io/@jayjay28/2019-09-04-1109-%EC%9E%91%EC%84%B1%EB%90%A8
 
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
-    
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
-                .antMatchers("/**").permitAll()
-                .and()
+        http
+            .cors().and()
+            .csrf().disable();
+
+        http
+            .authorizeRequests()
+            .antMatchers("/**").permitAll();
+        
+        http
             .formLogin()
-            .loginPage("/pages/user/login")
-                .and()
+            .loginPage("/pages/user/login").and()
             .httpBasic();
     }
 
