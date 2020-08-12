@@ -1,16 +1,12 @@
 package com.example.board.services.member;
 
-import java.sql.Date;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
-import java.util.Arrays;
-import java.util.Collection;
 
+import com.example.board.dao.member.IMemberDao;
 import com.example.board.vo.member.MemberVo;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -22,6 +18,9 @@ public class IMemberService implements MermberService, UserDetailsService {
 
     @Autowired
     private PasswordEncoder passwordEncoder; 
+
+    @Autowired
+    private IMemberDao memberDao;
 
     private Timestamp getCurrentTime() {
         return Timestamp.valueOf(LocalDateTime.now());
@@ -43,6 +42,8 @@ public class IMemberService implements MermberService, UserDetailsService {
         System.out.println(memberVo.getPassword());
         System.out.println(memberVo.getRegiDate());
         System.out.println("---------------------------------");
+
+        memberDao.create(memberVo);
 
     }
 

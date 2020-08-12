@@ -1,6 +1,5 @@
 package com.example.board.vo.member;
 
-import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -14,7 +13,7 @@ import lombok.Data;
 @Data
 public class MemberVo implements UserDetails {
 
-    private Long keyIdx;
+    private int keyIdx;
     private String id;
     private String password;
     private String name;
@@ -22,7 +21,11 @@ public class MemberVo implements UserDetails {
     private String phone;
     private String role;
     private Timestamp regiDate;
-    private Boolean enabled;
+    private boolean enabled;
+
+    public MemberVo() {
+    
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
