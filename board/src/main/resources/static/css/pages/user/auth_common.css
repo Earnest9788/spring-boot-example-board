@@ -1,0 +1,41 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+main {
+    width: 500px;
+    border: 1px solid #ddd;
+    padding: 2rem;
+}
+
+main .title {
+    display: flex;
+    justify-content: space-between;
+}
+main .title h2 {
+    margin-bottom: 2rem;
+    font-size: 22px;
+}
+
+form fieldset {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 2rem;
+}
+form fieldset:last-child {
+    margin-bottom: none;
+}
+form fieldset label {
+    margin-bottom: 10px;
+}
+
+form input {
+    width: 100%;
+    height: 30px;
+}
+form .submit_btn {
+    height: 36px;
+    margin-top: 1rem;
+}

@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html 
+    lagn="ko" 
+    xmlns:th="http://www.thymeleaf.org" 
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+>
+    <head>
+        <th:block th:replace="fragments/head :: headFragment" ></th:block>
+        <link rel="stylesheet" th:href="@{/css/pages/user/auth_common.css}" >
+        <title layout:title-pattern="$LAYOUT_TITLE - $CONTENT_TITLE">Spring Boot Board</title>
+    </head>
+    <body>
+        <th:block layout:fragment="content"></th:block>
+    </body>
+</html>
