@@ -5,9 +5,13 @@
 
 <mapper namespace="com.example.board.dao.member.IMemberDao">
 
-    <insert id="create" parameterType="com.example.board.vo.member.MemberVo">
+    <insert id="createMember" parameterType="com.example.board.vo.member.MemberVo">
         insert into member (id, password, name, email, phone, role, regiDate, enabled)
             values (#{id}, #{password}, #{name}, #{email}, #{phone}, #{role}, #{regiDate}, #{enabled})
     </insert>
+
+    <select id="findById" resultType="com.example.board.vo.member.MemberVo">
+        select * from member where id = #{_id}
+    </select>
 
 </mapper>

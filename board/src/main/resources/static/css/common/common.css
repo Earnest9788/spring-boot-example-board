@@ -13,11 +13,25 @@ header {
     display: flex;
     justify-content: space-between;
 }
+
 header h1 {
     font-weight: bold;
 }
-header .header_menu {
+
+header .menu {
     display: flex;
+}
+
+header .menu .user {
+    font-weight: bold;
+}
+
+header .menu > * {
+    margin-right: 20px;
+}
+
+header .menu > *:last-child {
+    margin-right: 0;
 }
 
 /* Main Contents */
