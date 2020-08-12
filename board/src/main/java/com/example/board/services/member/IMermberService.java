@@ -2,7 +2,7 @@ package com.example.board.services.member;
 
 import com.example.board.vo.member.MemberVo;
 
-public interface MermberService {
+public interface IMermberService {
     
     /**
      * 1. 회원가입

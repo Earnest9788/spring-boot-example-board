@@ -1,6 +1,6 @@
 package com.example.board.controllers.serviceController.member;
 
-import com.example.board.services.member.MermberService;
+import com.example.board.services.member.IMermberService;
 import com.example.board.vo.member.MemberVo;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class MemberController {
 
     @Autowired
-    MermberService memberService;
+    IMermberService memberService;
 
     @PostMapping("/api/user/regist")
     public String registMember(MemberVo memberVo) {
