@@ -1,5 +1,7 @@
 package com.example.board.services.article;
 
+import java.util.ArrayList;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -29,6 +31,15 @@ public class ArticleService implements IArticleService {
         articleVo.setRegiDate(customUtil.getCurrentTime());
 
         articleDao.createArticle(articleVo);
+
+    }
+
+    @Override
+    public ArrayList<ArticleVo> list() {
+
+        ArrayList<ArticleVo> articleList = articleDao.getList();
+
+        return articleList;
 
     }
     

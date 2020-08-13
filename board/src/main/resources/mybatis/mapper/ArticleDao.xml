@@ -10,4 +10,8 @@
             values (#{title}, #{content}, #{regiDate}, #{writerId})
     </insert>
 
+    <select id="getList" resultType="com.example.board.vo.article.ArticleVo">
+        select * from article order by regiDate desc
+    </select>
+
 </mapper>

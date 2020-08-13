@@ -9,14 +9,27 @@
     <title>Home</title>
 </head>
 
-    <!-- <th:block layout:fragment="css">
-        <link rel="stylesheet" th:href="@{/css/page/home.css}" >
+    <th:block layout:fragment="css">
+        <link rel="stylesheet" th:href="@{/css/pages/home.css}" >
     </th:block>
-    <th:block layout:fragment="script">
+    <!-- <th:block layout:fragment="script">
         <script th:src="@{/js/page/home.js}"></script>
     </th:block> -->
 
     <main layout:fragment="content">
-        <h1>content</h1>
+        
+        <div class="article_list_wrapper">
+            <ul class="article_list">
+                <li th:each="item : ${articleList}">
+                    <div>
+                        <a href="/" th:text="${item.title}"></a>
+                    </div>
+                    <div th:text="${item.writerId}"></div>
+                    <div th:text="${item.regiDate}"></div>
+                    <div th:text="${item.hit}"></div>
+                </li>
+            </ul>
+        </div>
+
     </main>
 </html>
