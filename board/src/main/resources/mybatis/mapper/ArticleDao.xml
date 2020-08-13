@@ -22,4 +22,8 @@
         update article set hit = hit + 1 where keyIdx = #{_keyIdx}
     </update>
 
+    <delete id="deleteArticle">
+        delete from article where keyIdx = #{_keyIdx}
+    </delete>
+
 </mapper>

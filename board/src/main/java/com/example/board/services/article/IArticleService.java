@@ -14,4 +14,6 @@ public interface IArticleService {
 
 	public ArticleVo detail(String keyIdx);
 
+	public void delete(String keyIdx);
+
 }

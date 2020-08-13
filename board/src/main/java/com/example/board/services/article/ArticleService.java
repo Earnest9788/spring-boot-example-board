@@ -51,5 +51,12 @@ public class ArticleService implements IArticleService {
 
         return article;
     }
+
+    @Override
+    public void delete(String keyIdx) {
+        
+        articleDao.deleteArticle(keyIdx);
+
+    }
     
 }

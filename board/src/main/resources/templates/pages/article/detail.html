@@ -40,5 +40,9 @@
             </div>
         </div>
 
+        <div class="article_detail_btns" th:if="${session['memberId'] == article.writerId}">
+            <a th:href="@{/api/article/delete(keyIdx=${article.keyIdx})}">삭제</a>
+        </div>
+
     </main>
 </html>

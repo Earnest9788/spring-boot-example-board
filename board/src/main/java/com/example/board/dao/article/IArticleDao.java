@@ -18,4 +18,6 @@ public interface IArticleDao {
 
 	public void hitUp(@Param("_keyIdx") String keyIdx);
 
+	public void deleteArticle(@Param("_keyIdx") String keyIdx);
+
 }

@@ -42,12 +42,21 @@ public class ArticleController {
     }
 
     @GetMapping("/article")
-    public String getMethodName(HttpServletRequest req, Model model) {
+    public String getArticleDetail(HttpServletRequest req, Model model) {
 
         ArticleVo article = articleService.detail(req.getParameter("keyIdx"));
         model.addAttribute("article", article);
 
         return "pages/article/detail";
+
+    }
+
+    @GetMapping("/api/article/delete")
+    public String deleteArticle(HttpServletRequest req) {
+
+        articleService.delete(req.getParameter("keyIdx"));
+
+        return "redirect:/";
 
     }
     
