@@ -1,13 +1,10 @@
 package com.example.board.services.member;
 
-import java.sql.Timestamp;
-import java.time.LocalDateTime;
-import java.util.Optional;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import com.example.board.dao.member.IMemberDao;
+import com.example.board.utils.CustomUtil;
 import com.example.board.vo.member.MemberVo;
 
 import org.apache.ibatis.javassist.NotFoundException;
@@ -16,6 +13,9 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class MemberService implements IMermberService {
+
+    @Autowired
+    private CustomUtil customUtil;
 
     @Autowired
     private IMemberDao memberDao; 
@@ -28,7 +28,7 @@ public class MemberService implements IMermberService {
 
         // memberVo.setPassword(encodedPassword);
         memberVo.setEnabled(true);
-        memberVo.setRegiDate(getCurrentTime());
+        memberVo.setRegiDate(customUtil.getCurrentTime());
         memberVo.setRole("ROLE_USER");
 
         memberDao.createMember(memberVo);
@@ -75,10 +75,6 @@ public class MemberService implements IMermberService {
         session.setAttribute("memberName", memberVo.getName());
         session.setAttribute("memberRole", memberVo.getRole());
 
-    }
-
-    private Timestamp getCurrentTime() {
-        return Timestamp.valueOf(LocalDateTime.now());
     }
 
 }

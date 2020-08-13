@@ -5,12 +5,6 @@ import javax.servlet.http.HttpServletRequest;
 import com.example.board.vo.member.MemberVo;
 
 public interface IMermberService {
-    
-    /**
-     * 1. 회원가입
-     * 2. 로그인
-     * 3. 로그아웃
-     */
 
     public void regist(MemberVo memberVo);
 

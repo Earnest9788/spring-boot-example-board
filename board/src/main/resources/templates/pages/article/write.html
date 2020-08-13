@@ -18,14 +18,14 @@
 
     <main class="write" layout:fragment="content">
         
-        <form action="" method="POST">
+        <form action="/api/article/regist" method="POST">
             <fieldset>
                 <label>제목</label>
-                <input type="text">
+                <input type="text" name="title">
             </fieldset>
             <fieldset>
                 <label>내용</label>
-                <textarea name="" id="" cols="30" rows="10"></textarea>
+                <textarea name="content" cols="30" rows="10"></textarea>
             </fieldset>
             <fieldset>
                 <input class="submit_btn" type="submit" value="작성">
