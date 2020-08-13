@@ -13,6 +13,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 @Controller
 public class ArticleController {
@@ -29,7 +31,7 @@ public class ArticleController {
 
     }
 
-    @GetMapping("/")
+    @GetMapping(value={"/", "/home"})
     public String getArticleList(Model model) {
 
         ArrayList<ArticleVo> articleList = articleService.list();
@@ -38,5 +40,16 @@ public class ArticleController {
         return "pages/home";
 
     }
+
+    @GetMapping("/article")
+    public String getMethodName(HttpServletRequest req, Model model) {
+
+        ArticleVo article = articleService.detail(req.getParameter("keyIdx"));
+        model.addAttribute("article", article);
+
+        return "pages/article/detail";
+
+    }
+    
 
 }

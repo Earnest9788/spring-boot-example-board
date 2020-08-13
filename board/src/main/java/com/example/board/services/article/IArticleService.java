@@ -12,4 +12,6 @@ public interface IArticleService {
 
     public ArrayList<ArticleVo> list();
 
+	public ArticleVo detail(String keyIdx);
+
 }

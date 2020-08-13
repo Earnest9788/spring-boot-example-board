@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import com.example.board.vo.article.ArticleVo;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 @Mapper
 public interface IArticleDao {
@@ -12,5 +13,9 @@ public interface IArticleDao {
     public void createArticle(ArticleVo articleVo);
 
     public ArrayList<ArticleVo> getList();
+
+	public ArticleVo findByKey(@Param("_keyIdx") String keyIdx);
+
+	public void hitUp(@Param("_keyIdx") String keyIdx);
 
 }

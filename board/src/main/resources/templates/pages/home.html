@@ -21,9 +21,7 @@
         <div class="article_list_wrapper">
             <ul class="article_list">
                 <li th:each="item : ${articleList}">
-                    <div>
-                        <a href="/" th:text="${item.title}"></a>
-                    </div>
+                    <div><a th:href="@{/article(keyIdx=${item.keyIdx})}" th:text="${item.title}"></a></div>
                     <div th:text="${item.writerId}"></div>
                     <div th:text="${item.regiDate}"></div>
                     <div th:text="${item.hit}"></div>

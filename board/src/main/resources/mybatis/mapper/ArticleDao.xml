@@ -14,4 +14,12 @@
         select * from article order by regiDate desc
     </select>
 
+    <select id="findByKey" resultType="com.example.board.vo.article.ArticleVo">
+        select * from article where keyIdx = #{_keyIdx}
+    </select>
+
+    <update id="hitUp">
+        update article set hit = hit + 1 where keyIdx = #{_keyIdx}
+    </update>
+
 </mapper>

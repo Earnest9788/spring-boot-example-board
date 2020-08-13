@@ -42,5 +42,14 @@ public class ArticleService implements IArticleService {
         return articleList;
 
     }
+
+    @Override
+    public ArticleVo detail(String keyIdx) {
+        
+        articleDao.hitUp(keyIdx);
+        ArticleVo article = articleDao.findByKey(keyIdx);
+
+        return article;
+    }
     
 }

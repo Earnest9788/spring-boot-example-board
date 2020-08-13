@@ -7,7 +7,7 @@ import lombok.Data;
 @Data
 public class ArticleVo {
     
-    private int keyId;
+    private int keyIdx;
     private String title;
     private String content;
     private Timestamp regiDate;

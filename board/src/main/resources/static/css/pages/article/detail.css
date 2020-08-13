@@ -1,0 +1,31 @@
+.article_detail {
+    border: 1px solid #ddd;
+    padding: 2rem;
+    border-radius: 5px;
+}
+
+.article_detail .article_detail_header {
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+}
+
+.article_detail .article_detail_header > div:first-child {
+    display: flex;
+}
+
+.article_detail .article_detail_header > div:first-child > div {
+    margin-right: 20px;
+}
+
+.article_detail .article_detail_header > div:first-child > div span {
+    color: #333;
+    font-weight: bold;
+}
+
+.article_detail .article_detail_header-title {
+    margin-top: 1rem;
+    font-size: 26px;
+    font-weight: bold;
+    color: coral;
+}

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorator="layouts/main_layout"
+>
+<head>
+    <title>상세</title>
+</head>
+
+    <th:block layout:fragment="css">
+        <link rel="stylesheet" th:href="@{/css/pages/article/detail.css}" >
+    </th:block>
+    <!-- <th:block layout:fragment="script">
+        <script th:src="@{/js/page/home.js}"></script>
+    </th:block> -->
+
+    <main layout:fragment="content">
+        
+        <div class="article_detail">
+            <div class="article_detail_header">
+                <div>
+                    <div class="article_detail_header-writer">
+                        작성자 : <span th:text="${article.writerId}" />
+                    </div>
+                    <div class="article_detail_header-date">
+                        작성일 : <span th:text="${article.regiDate}" />
+                    </div>
+                    <div class="article_detail_header-hit">
+                        조회수 : <span th:text="${article.hit}" />
+                    </div>
+                </div>
+                <div>
+                    <div class="article_detail_header-title" th:text="${article.title}"></div>
+                </div>
+            </div>
+            <div class="article_detail_body">
+                <div class="article_detail_header-content" th:text="${article.content}"></div>
+            </div>
+        </div>
+
+    </main>
+</html>
