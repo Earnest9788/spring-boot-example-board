@@ -1,4 +1,8 @@
 /* Body */
+* {
+    box-sizing: border-box;
+}
+
 body {
     display: flex;
     flex-direction: column;
@@ -8,10 +12,13 @@ body {
 
 /* Header */
 header {
-    padding: 0.5rem 1rem;
     border-bottom: 1px solid #ddd;
     display: flex;
+    align-items: center;
     justify-content: space-between;
+    height: 33px;
+    padding: 0 10px;
+
 }
 
 header h1 {
@@ -37,10 +44,14 @@ header .menu > *:last-child {
 /* Main Contents */
 main {
     padding: 1rem;
+    height: calc(100vh - 66px);
 }
 
 /* Footer */
 footer {
-    padding: 0.5rem 1rem;
+    height: 33px;
     border-top: 1px solid #ddd;
+    padding: 0 10px;
+    display: flex;
+    align-items: center;
 }
