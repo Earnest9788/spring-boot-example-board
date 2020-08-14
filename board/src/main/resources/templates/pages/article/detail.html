@@ -40,8 +40,14 @@
             </div>
         </div>
 
-        <div class="article_detail_btns" th:if="${session['memberId'] == article.writerId}">
-            <a th:href="@{/api/article/delete(keyIdx=${article.keyIdx})}">삭제</a>
+        <div class="article_detail_btns">
+            <div>
+                <a href="/">목록으로</a>
+            </div>
+            <div th:if="${session['memberId'] == article.writerId}">
+                <a th:href="@{/article/form(keyIdx=${article.keyIdx})}">수정</a>
+                <a th:href="@{/api/article/delete(keyIdx=${article.keyIdx})}">삭제</a>
+            </div>
         </div>
 
     </main>

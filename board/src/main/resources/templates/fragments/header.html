@@ -11,7 +11,7 @@
                 <span class="user" th:text="${session['memberId']}" />
                 <span th:text="${session['memberRole'] == 'ROLE_USER' ? '[user]' : '[admin]'}" />
             </div>
-            <a href="/write">글쓰기</a>
+            <a href="/article/form">글쓰기</a>
             <a href="/api/user/logout">로그아웃</a>
         </div>
         <div th:unless="${session['memberId']}">

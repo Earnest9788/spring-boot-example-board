@@ -21,12 +21,19 @@
         <div class="article_list_wrapper">
             <ul class="article_list">
                 <li th:each="item : ${articleList}">
-                    <div><a th:href="@{/article(keyIdx=${item.keyIdx})}" th:text="${item.title}"></a></div>
-                    <div th:text="${item.writerId}"></div>
-                    <div th:text="${item.regiDate}"></div>
-                    <div th:text="${item.hit}"></div>
+                    <div class="article_list_title"><a th:href="@{/article(keyIdx=${item.keyIdx})}" th:text="${item.title}"></a></div>
+                    <div class="article_list_writer" th:text="${item.writerId}"></div>
+                    <div class="article_list_date" th:text="${item.regiDate}"></div>
+                    <div class="article_list_hit" th:text="${item.hit}"></div>
                 </li>
             </ul>
+            <!-- <div class="pager_wrapper" th:with="page=${param.p == null ? 1 : param.p}">
+                <ul class="pager" th:with="start=${page - (page - 1) % 10}">
+                    <li th:each="i: ${#numbers.sequence(1, 10)">
+                        <a href="/?p=1" th:text="${iStat.index + startNum}"></a>
+                    </li>
+                </ul>
+            </div> -->
         </div>
 
     </main>

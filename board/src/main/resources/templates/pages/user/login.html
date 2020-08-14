@@ -37,5 +37,8 @@
         <div class="go_home">
             <a href="/">메인페이지</a>
         </div>
+        <div class="error_box" th:if="${#httpServletRequest.getParameter('fail')}">
+            <div>로그인에 실패했습니다.</div>
+        </div>
     </main>
 </html>

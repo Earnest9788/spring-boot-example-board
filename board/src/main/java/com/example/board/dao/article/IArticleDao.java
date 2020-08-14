@@ -20,4 +20,6 @@ public interface IArticleDao {
 
 	public void deleteArticle(@Param("_keyIdx") String keyIdx);
 
+	public void updateArticle(@Param("_keyIdx") String keyIdx, @Param("_title") String title, @Param("_content") String content);
+
 }

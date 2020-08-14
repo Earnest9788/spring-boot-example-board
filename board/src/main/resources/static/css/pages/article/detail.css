@@ -29,3 +29,25 @@
     font-weight: bold;
     color: coral;
 }
+
+.article_detail_btns {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+.article_detail_btns > div:last-child {
+    display: flex;
+}
+
+.article_detail_btns > div > a {
+    display: block;
+    margin-left: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 12px;
+    width: 50px;
+    height: 30px;
+    text-align: center;
+    line-height: 30px;
+}

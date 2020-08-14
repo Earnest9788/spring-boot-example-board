@@ -26,4 +26,9 @@
         delete from article where keyIdx = #{_keyIdx}
     </delete>
 
+
+    <update id="updateArticle">
+        update article set title = #{_title}, content = #{_content} where keyIdx = #{_keyIdx}
+    </update>
+
 </mapper>

@@ -21,3 +21,21 @@
     margin-bottom: 0;
     padding-bottom: 0;
 }
+
+.article_list_title {
+    width: 70%;
+}
+
+.pager_wrapper {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+}
+
+.pager {
+    display: flex;
+}
+
+.pager > li {
+    padding: 0 5px;
+}

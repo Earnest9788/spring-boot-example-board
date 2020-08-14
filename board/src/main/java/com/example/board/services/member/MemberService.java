@@ -9,6 +9,7 @@ import com.example.board.vo.member.MemberVo;
 
 import org.apache.ibatis.javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -18,15 +19,18 @@ public class MemberService implements IMermberService {
     private CustomUtil customUtil;
 
     @Autowired
+    private PasswordEncoder passwordEncoder;
+
+    @Autowired
     private IMemberDao memberDao; 
 
     @Override
     public void regist(MemberVo memberVo) {
 
         String rawPassword = memberVo.getPassword();
-        // String encodedPassword = passwordEncoder.encode(rawPassword);
+        String encodedPassword = passwordEncoder.encode(rawPassword);
 
-        // memberVo.setPassword(encodedPassword);
+        memberVo.setPassword(encodedPassword);
         memberVo.setEnabled(true);
         memberVo.setRegiDate(customUtil.getCurrentTime());
         memberVo.setRole("ROLE_USER");
@@ -47,7 +51,8 @@ public class MemberService implements IMermberService {
                 throw new NotFoundException(id);
             }
 
-            if (!pw.equals(byId.getPassword())) {
+            if (!passwordEncoder.matches(pw, byId.getPassword())) {
+
                 byId = null;
             }
 

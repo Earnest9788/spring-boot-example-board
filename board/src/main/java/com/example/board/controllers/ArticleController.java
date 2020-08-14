@@ -4,14 +4,19 @@ import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import com.example.board.services.article.IArticleService;
 import com.example.board.vo.article.ArticleVo;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -20,24 +25,58 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class ArticleController {
     
     @Autowired
-    IArticleService articleService;
+    private IArticleService articleService;
 
-    @PostMapping("/api/article/regist")
-    public String reigstArticle(HttpServletRequest req, ArticleVo articleVo) {
+    @InitBinder
+	public void InitBinder(WebDataBinder dataBinder) {
+		StringTrimmerEditor stringTrimmerEditor = new StringTrimmerEditor(true);
+		dataBinder.registerCustomEditor(String.class, stringTrimmerEditor);
+	}
 
-        articleService.regist(req, articleVo);
-
-        return "redirect:/";
+    @GetMapping(value={"/", "/home"})
+    public String getArticleList(HttpServletRequest req, Model model) {
+        
+        articleService.list(req, model);
+        return "pages/home";
 
     }
 
-    @GetMapping(value={"/", "/home"})
-    public String getArticleList(Model model) {
+    @GetMapping("/article/form")
+    public String getWriteForm(HttpServletRequest req, Model model) {
 
-        ArrayList<ArticleVo> articleList = articleService.list();
-        model.addAttribute("articleList", articleList);
+        String keyIdx = req.getParameter("keyIdx");
 
-        return "pages/home";
+        if (keyIdx != null) {
+            ArticleVo article = articleService.detail(keyIdx);
+            model.addAttribute("article", article);
+        }
+
+        return "pages/article/write";
+    }
+        
+    @PostMapping("/api/article/regist")
+    public String reigstArticle(@Valid ArticleVo articleVo, BindingResult result, HttpServletRequest req ) {
+
+        if (result.hasErrors()) {
+            return "redirect:/article/form?fail";
+
+        } else {
+            articleService.regist(req, articleVo);
+            return "redirect:/";
+        }
+
+    }
+
+    @PostMapping("/api/article/update") 
+    public String updateArticle(HttpServletRequest req, @Valid ArticleVo articleVo, BindingResult result) {
+
+        if (result.hasErrors()) {
+            return "redirect:/article/form?fail&keyIdx=" + req.getParameter("keyIdx");
+
+        } else {
+            articleService.update(req.getParameter("keyIdx"), articleVo);
+            return "redirect:/";
+        }
 
     }
 
@@ -59,6 +98,5 @@ public class ArticleController {
         return "redirect:/";
 
     }
-    
 
 }

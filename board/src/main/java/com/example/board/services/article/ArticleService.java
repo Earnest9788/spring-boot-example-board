@@ -11,6 +11,7 @@ import com.example.board.vo.article.ArticleVo;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 
 @Service
 public class ArticleService implements IArticleService {
@@ -35,17 +36,17 @@ public class ArticleService implements IArticleService {
     }
 
     @Override
-    public ArrayList<ArticleVo> list() {
+    public void list(HttpServletRequest req, Model model) {
 
         ArrayList<ArticleVo> articleList = articleDao.getList();
 
-        return articleList;
+        model.addAttribute("articleList", articleList);
 
     }
 
     @Override
     public ArticleVo detail(String keyIdx) {
-        
+
         articleDao.hitUp(keyIdx);
         ArticleVo article = articleDao.findByKey(keyIdx);
 
@@ -54,8 +55,19 @@ public class ArticleService implements IArticleService {
 
     @Override
     public void delete(String keyIdx) {
-        
+
         articleDao.deleteArticle(keyIdx);
+
+    }
+
+    @Override
+    public void update(String keyIdx, ArticleVo articleVo) {
+
+        System.out.println("[----- ArticleService.java -----]");
+        System.out.println(keyIdx);
+        System.out.println(articleVo.getTitle());
+
+        articleDao.updateArticle(keyIdx, articleVo.getTitle(), articleVo.getContent());
 
     }
     

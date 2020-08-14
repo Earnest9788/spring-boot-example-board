@@ -4,17 +4,33 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+
 import lombok.Data;
 
 @Data
 public class MemberVo {
 
     private int keyIdx;
+
+    @NotEmpty
     private String id;
+
+    @NotEmpty
     private String password;
+
+    @NotEmpty
     private String name;
+
+    @NotEmpty
+    @Email
     private String email;
+
+    @NotEmpty
     private String phone;
+
     private String role;
     private Timestamp regiDate;
     private boolean enabled;

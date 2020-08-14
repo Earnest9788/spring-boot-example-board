@@ -13,36 +13,36 @@
         <link rel="stylesheet" th:href="@{/css/pages/article/write.css}" >
     </th:block>
     <th:block layout:fragment="script">
-        <script th:src="@{/webjars/ckeditor/18.0.0/classic/ckeditor.js}"></script>
+        <script th:src="@{/js/ckeditor5/ckeditor.js}"></script>
         <script>
-            // var ckeditor_config = {
-            //     resize_enaleb : false,
-            //     enterMode : CKEDITOR.ENTER_BR,
-            //     shiftEnterMode : CKEDITOR.ENTER_P
-            //     //filebrowserUploadUrl : "${pageContext.request.contextPath}/admin/goods/ckUpload"
-            // };
-            
-            // console.log(window.CKEDITOR);
-
-            CKEDITOR.replace("content", ckeditor_config);             
-        </script>           
+            // window.onload = () => {
+            //     ClassicEditor
+            //     .create( document.querySelector( '#ckEditor' ) )
+            //     .catch( error => {
+            //         console.error( error );
+            //     } );
+            // }           
+        </script>    
     </th:block>
 
     <main class="write" layout:fragment="content">
         
-        <form action="/api/article/regist" method="POST">
+        <form th:action="${article != null} ? @{/api/article/update(keyIdx=${article.keyIdx})} : '/api/article/regist'" method="POST">
             <fieldset>
                 <label>제목</label>
-                <input type="text" name="title">
+                <input type="text" name="title" th:value="${article != null} ? ${article.title} : ''">
             </fieldset>
             <fieldset>
                 <label>내용</label>
-                <textarea name="content" id="content" cols="30" rows="10"></textarea>            
+                <div></div>
+                <textarea id="ckEditor" name="content" cols="30" rows="10" th:text="${article != null} ? ${article.content} : ''"></textarea>            
             </fieldset>
             <fieldset>
-                <input class="submit_btn" type="submit" value="작성">
+                <input class="submit_btn" type="submit" th:value="${article != null} ? '수정' : '작성'">
             </fieldset>
         </form>
-
+        <div class="error_box" th:if="${#httpServletRequest.getParameter('fail')}">
+            <div>요청에 실패했습니다. 내용을 모두 입력해주세요.</div>
+        </div>
     </main>     
 </html>
