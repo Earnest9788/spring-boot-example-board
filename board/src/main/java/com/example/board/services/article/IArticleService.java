@@ -9,10 +9,10 @@ import com.example.board.vo.article.ArticleVo;
 import org.springframework.ui.Model;
 
 public interface IArticleService {
-    
-    public void regist(HttpServletRequest req, ArticleVo articleVo);
+	
+	public void list(String pageNum, String contentNum, Model model);
 
-    public void list(HttpServletRequest req, Model model);
+    public void regist(HttpServletRequest req, ArticleVo articleVo);
 
 	public ArticleVo detail(String keyIdx);
 

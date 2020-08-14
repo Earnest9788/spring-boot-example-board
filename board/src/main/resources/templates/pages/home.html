@@ -27,13 +27,18 @@
                     <div class="article_list_hit" th:text="${item.hit}"></div>
                 </li>
             </ul>
-            <!-- <div class="pager_wrapper" th:with="page=${param.p == null ? 1 : param.p}">
-                <ul class="pager" th:with="start=${page - (page - 1) % 10}">
-                    <li th:each="i: ${#numbers.sequence(1, 10)">
-                        <a href="/?p=1" th:text="${iStat.index + startNum}"></a>
+            <div class="pager_total">
+                <span th:text="${pager.getCurrentBlock() + ' / ' + pager.getLastBlock()}"></span>
+            </div>
+            <div class="pager_wrapper">
+                <ul class="pager">
+                    <li th:if="${pager.isPrev()}"><span>prev</span></li>
+                    <li th:each="i: ${#numbers.sequence(pager.getStartPage(), pager.getEndPage())}">
+                        <a th:href="@{/(pageNum=${i})}" th:text="${i}"></a>
                     </li>
+                    <li th:if="${pager.isNext()}"><span>next</span></li>
                 </ul>
-            </div> -->
+            </div>
         </div>
 
     </main>

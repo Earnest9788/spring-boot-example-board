@@ -12,7 +12,7 @@ public interface IArticleDao {
     
     public void createArticle(ArticleVo articleVo);
 
-    public ArrayList<ArticleVo> getList();
+    public ArrayList<ArticleVo> getList(@Param("_pageNum") int cPageNum, @Param("_contentNum") int cContentNum);
 
 	public ArticleVo findByKey(@Param("_keyIdx") String keyIdx);
 
@@ -21,5 +21,7 @@ public interface IArticleDao {
 	public void deleteArticle(@Param("_keyIdx") String keyIdx);
 
 	public void updateArticle(@Param("_keyIdx") String keyIdx, @Param("_title") String title, @Param("_content") String content);
+
+	public int totalCount();
 
 }

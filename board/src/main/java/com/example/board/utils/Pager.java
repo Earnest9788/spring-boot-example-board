@@ -1,5 +1,8 @@
 package com.example.board.utils;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class Pager {
 
     private int totalCount; // 페이징 적용할 전체 데이터 갯수

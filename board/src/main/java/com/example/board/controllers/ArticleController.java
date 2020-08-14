@@ -34,9 +34,13 @@ public class ArticleController {
 	}
 
     @GetMapping(value={"/", "/home"})
-    public String getArticleList(HttpServletRequest req, Model model) {
-        
-        articleService.list(req, model);
+    public String getArticleList(
+        @RequestParam(defaultValue = "1") String pageNum, 
+        @RequestParam(defaultValue = "10") String contentNum,
+        Model model
+    ) {
+
+        articleService.list(pageNum, contentNum, model);
         return "pages/home";
 
     }

@@ -39,3 +39,10 @@
 .pager > li {
     padding: 0 5px;
 }
+
+.pager_total {
+    display: flex;
+    justify-content: flex-end;
+    padding: 0 1rem;
+    margin-top: 1rem;
+}

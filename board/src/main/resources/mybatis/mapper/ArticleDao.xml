@@ -11,7 +11,7 @@
     </insert>
 
     <select id="getList" resultType="com.example.board.vo.article.ArticleVo">
-        select * from article order by regiDate desc
+        select * from article order by regiDate desc limit #{_pageNum}, #{_contentNum}
     </select>
 
     <select id="findByKey" resultType="com.example.board.vo.article.ArticleVo">
@@ -30,5 +30,10 @@
     <update id="updateArticle">
         update article set title = #{_title}, content = #{_content} where keyIdx = #{_keyIdx}
     </update>
+
+
+    <select id="totalCount" resultType="int">
+        select count(*) from article
+    </select>
 
 </mapper>
