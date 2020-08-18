@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorator="layouts/admin_layout"
+>
+<head>
+    <title>관리자 페이지</title>
+</head>
+
+    <th:block layout:fragment="css">
+        <link rel="stylesheet" th:href="@{/css/pages/home.css}" >
+        <link rel="stylesheet" href="@{/css/pages/admin/home.css}">
+    </th:block>
+    <!-- <th:block layout:fragment="script">
+        <script th:src="@{/js/page/home.js}"></script>
+    </th:block> -->
+    <div layout:fragment="menu">
+        menu...
+    </div>
+    <div layout:fragment="content">    
+        <h2>Admin...</h2>
+    </div>
+</html>

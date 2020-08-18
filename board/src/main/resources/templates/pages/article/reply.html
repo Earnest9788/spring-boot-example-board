@@ -6,7 +6,7 @@
     layout:decorator="layouts/main_layout"
 >
     <head>
-        <title>글쓰기</title>
+        <title>답변</title>
     </head>
 
     <th:block layout:fragment="css">
@@ -18,21 +18,23 @@
 
     <main class="write" layout:fragment="content">
         <form
-            th:action="${article != null} ? @{/api/article/update(keyIdx=${article.keyIdx})} : '/api/article/regist'" 
+            th:action="@{/api/article/reply(groupIdx=${article.replyGroup})}"
             method="POST"
             id="text-form"
             enctype="multipart/form-data"
         >
+            <input type="hidden" name="replyStep" th:value="${article.replyStep}">
+            <input type="hidden" name="replyIndent" th:value="${article.replyIndent}">
             <fieldset>
                 <label>제목</label>
-                <input type="text" name="title" th:value="${article != null} ? ${article.title} : ''">
+                <input type="text" name="title" th:value="'RE: ' + ${article.title}">
             </fieldset>
             <fieldset>
                 <label>내용</label>
-                <textarea id="ckEditor" name="content" cols="30" rows="10" th:text="${article != null} ? ${article.content} : ''"></textarea>            
+                <textarea id="ckEditor" name="content" cols="30" rows="10" th:text="${article.content}"></textarea>            
             </fieldset>
             <fieldset th:if="${article != null}">
-                <input type="hidden" name="files" id="hiddenFiles" th:value="${article != null} ? ${article.files} : ''">
+                <input type="hidden" name="files" id="hiddenFiles" th:value="${article.files}">
                 <ul class="addedFileList" id="addedFileList">
                     <li th:each="item : ${#strings.arraySplit(article.files, ',')}" th:id="'file-' + ${item}">
                         <div th:text="${item}"></div>
@@ -41,25 +43,13 @@
                         </div>
                     </li>
                 </ul>
-                <script type="text/javascript">
-                    const removeFile = (target) => {
-                        const filesInput = document.getElementById("hiddenFiles");
-                        const files = filesInput.value;
-                        let newResult = files.split(",").filter((v) => v != target).join(',');
-                        filesInput.value = newResult;
-
-                        const parentNode = document.getElementById("addedFileList");
-                        const targetNode = document.getElementById("file-" + target);
-                        parentNode.removeChild(targetNode);
-                    }
-                </script>
             </fieldset>
             <fieldset>
                 <div id="fileTagList"></div>
                 <div id="addFileBtn">파일 추가하기</div>
             </fieldset>
             <fieldset>
-                <input class="submit_btn" type="submit" th:value="${article != null} ? '수정' : '작성'">
+                <input class="submit_btn" type="submit" th:value="답변">
             </fieldset>
         </form>
         <div class="error_box" th:if="${#httpServletRequest.getParameter('fail')}">
@@ -95,6 +85,17 @@
                 inputTag.click();
             });
 
+            const removeFile = (target) => {
+                const filesInput = document.getElementById("hiddenFiles");
+                const files = filesInput.value;
+                let newResult = files.split(",").filter((v) => v != target).join(',');
+                filesInput.value = newResult;
+
+                const parentNode = document.getElementById("addedFileList");
+                const targetNode = document.getElementById("file-" + target);
+                console.log(targetNode);
+                parentNode.removeChild(targetNode);
+            }
         </script>
     </main>
 </html>

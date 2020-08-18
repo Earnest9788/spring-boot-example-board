@@ -3,7 +3,6 @@ package com.example.board.vo.article;
 import java.sql.Timestamp;
 
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 
 import lombok.Data;
 
@@ -17,9 +16,14 @@ public class ArticleVo {
 
     @NotEmpty
     private String content;
-    
-    private Timestamp regiDate;
+
     private String writerId;
+
+    private Timestamp regiDate;
+    private String files;
     private int hit;
+    private int replyGroup;
+    private int replyStep;
+    private int replyIndent;
 
 }

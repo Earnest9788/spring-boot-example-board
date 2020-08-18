@@ -7,7 +7,6 @@ import com.example.board.dao.member.IMemberDao;
 import com.example.board.utils.CustomUtil;
 import com.example.board.vo.member.MemberVo;
 
-import org.apache.ibatis.javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -47,12 +46,7 @@ public class MemberService implements IMermberService {
         try {
             byId = memberDao.findById(id);
 
-            if (byId == null) {
-                throw new NotFoundException(id);
-            }
-
             if (!passwordEncoder.matches(pw, byId.getPassword())) {
-
                 byId = null;
             }
 
@@ -61,7 +55,7 @@ public class MemberService implements IMermberService {
         }
 
         return byId;
-
+        
     }
 
     @Override

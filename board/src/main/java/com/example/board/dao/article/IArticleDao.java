@@ -10,18 +10,52 @@ import org.apache.ibatis.annotations.Param;
 @Mapper
 public interface IArticleDao {
     
-    public void createArticle(ArticleVo articleVo);
+	public int createArticle(
+		ArticleVo articleVo
+	);
+	
+	public void updateGroupId(
+		int groupId
+	);
 
-    public ArrayList<ArticleVo> getList(@Param("_pageNum") int cPageNum, @Param("_contentNum") int cContentNum);
+	public void createReply(
+		ArticleVo articleVo
+	);
 
-	public ArticleVo findByKey(@Param("_keyIdx") String keyIdx);
+	public void replyShape(
+		@Param("_replyGroup") String groupIndex, 
+		@Param("_replyStep") int replyStep
+	);
 
-	public void hitUp(@Param("_keyIdx") String keyIdx);
+    public ArrayList<ArticleVo> getList(
+		@Param("_pageNum") int cPageNum, 
+		@Param("_contentNum") int cContentNum,
+		@Param("_titleKeyword") String titleKeyword,
+		@Param("_writerKeyword") String writerKeyword
+	);
 
-	public void deleteArticle(@Param("_keyIdx") String keyIdx);
+	public ArticleVo findByKey(
+		@Param("_keyIdx") String keyIdx
+	);
 
-	public void updateArticle(@Param("_keyIdx") String keyIdx, @Param("_title") String title, @Param("_content") String content);
+	public void hitUp(
+		@Param("_keyIdx") String keyIdx
+	);
 
-	public int totalCount();
+	public void deleteArticle(
+		@Param("_keyIdx") String keyIdx
+	);
+
+	public void updateArticle(
+		@Param("_keyIdx") String keyIdx, 
+		@Param("_title") String title, 
+		@Param("_content") String content, 
+		@Param("_files") String files
+	);
+
+	public int totalCount(
+		@Param("_titleKeyword") String titleKeyword,
+		@Param("_writerKeyword") String writerKeyword		
+	);
 
 }

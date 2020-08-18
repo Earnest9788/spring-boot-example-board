@@ -7,7 +7,7 @@
 
 .write form fieldset label {
     width: 100px;
-    color: #ddd;
+    color: coral;
     font-weight: bold;
     margin-bottom: 1rem;
 }
@@ -19,13 +19,34 @@
     border-radius: 5px;
 }
 
-.write form fieldset .submit_btn {
-    height: 36px;
-    margin-top: 1rem;
-}
-
 .write form fieldset textarea {
     width: 100%;
     border-color: #ddd;
     border-radius: 5px;
+}
+
+.write .submit_btn {
+    width: 100%;
+    height: 36px;
+    margin-top: 2rem;
+}
+
+.addedFileList > li {
+    display: flex;
+    justify-content: space-between;
+}
+
+#addFileBtn {
+    height: 50px;
+    background: #ddd;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+#fileTagList .fileTagWrap {
+    display: flex;
+    justify-content: space-between;
 }

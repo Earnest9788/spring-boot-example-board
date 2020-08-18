@@ -38,11 +38,21 @@
             <div class="article_detail_body">
                 <div class="article_detail_header-content" th:text="${article.content}"></div>
             </div>
+            <div class="article_detail_footer">
+                <ul>
+                    <li th:each="item : ${#strings.arraySplit(article.files, ',')}">
+                        <a download th:href="@{/api/file/download(file=${item})}" th:text="${item}"></a>
+                    </li>
+                </ul>
+            </div>
         </div>
 
         <div class="article_detail_btns">
             <div>
                 <a href="/">목록으로</a>
+                <th:block th:if="${session['memberId'] != null}">
+                    <a th:href="@{/article/reply(keyIdx=${article.keyIdx})}">답변</a>
+                </th:block>
             </div>
             <div th:if="${session['memberId'] == article.writerId}">
                 <a th:href="@{/article/form(keyIdx=${article.keyIdx})}">수정</a>

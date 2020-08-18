@@ -1,7 +1,5 @@
 package com.example.board.dao.member;
 
-import java.util.Optional;
-
 import com.example.board.vo.member.MemberVo;
 
 import org.apache.ibatis.annotations.Mapper;

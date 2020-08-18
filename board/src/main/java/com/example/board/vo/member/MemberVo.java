@@ -1,11 +1,8 @@
 package com.example.board.vo.member;
 
 import java.sql.Timestamp;
-import java.util.ArrayList;
-import java.util.Collection;
 
 import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 
 import lombok.Data;

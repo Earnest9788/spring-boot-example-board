@@ -5,14 +5,30 @@
 
 <mapper namespace="com.example.board.dao.article.IArticleDao">
 
-    <insert id="createArticle" parameterType="com.example.board.vo.article.ArticleVo">
-        insert into article (title, content, regiDate, writerId)
-            values (#{title}, #{content}, #{regiDate}, #{writerId})
+    <select id="getList" resultType="com.example.board.vo.article.ArticleVo">
+        select * 
+        from article
+        <choose>
+            <when test="_titleKeyword != null">
+                where title like CONCAT('%',#{_titleKeyword},'%')
+            </when>
+            <when test="_writerKeyword != null">
+                where writerId = #{_writerKeyword}
+            </when>
+        </choose>
+        order by replyGroup desc, replyStep asc 
+        limit #{_pageNum}, #{_contentNum}
+    </select>
+
+    <insert id="createArticle"  parameterType="com.example.board.vo.article.ArticleVo" useGeneratedKeys="true" keyProperty="keyIdx">
+        insert into article (title, content, regiDate, writerId, files)
+            values (#{title}, #{content}, #{regiDate}, #{writerId}, #{files})
     </insert>
 
-    <select id="getList" resultType="com.example.board.vo.article.ArticleVo">
-        select * from article order by regiDate desc limit #{_pageNum}, #{_contentNum}
-    </select>
+    <insert id="createReply" parameterType="com.example.board.vo.article.ArticleVo">
+        insert into article (title, content, regiDate, writerId, files, replyGroup, replyStep, replyIndent)
+            values (#{title}, #{content}, now(), #{writerId}, #{files}, #{replyGroup}, #{replyStep} + 1, #{replyIndent} + 1);
+    </insert>
 
     <select id="findByKey" resultType="com.example.board.vo.article.ArticleVo">
         select * from article where keyIdx = #{_keyIdx}
@@ -28,12 +44,30 @@
 
 
     <update id="updateArticle">
-        update article set title = #{_title}, content = #{_content} where keyIdx = #{_keyIdx}
+        update article set title = #{_title}, content = #{_content}, files = #{_files} where keyIdx = #{_keyIdx}
     </update>
 
 
     <select id="totalCount" resultType="int">
-        select count(*) from article
+        select count(*) 
+        from article
+        <choose>
+            <when test="_titleKeyword != null">
+                where title like CONCAT('%',#{_titleKeyword},'%')
+            </when>
+            <when test="_writerKeyword != null">
+                where writerId = #{_writerKeyword}
+            </when>
+        </choose>        
     </select>
+
+
+    <update id="updateGroupId">
+        update article set replyGroup = #{_replyGroup} where keyIdx = #{_replyGroup}
+    </update>
+
+    <update id="replyShape">
+        update article set replyStep = replyStep + 1 where replyGroup = #{_replyGroup} and replyStep > ${_replyStep}
+    </update>
 
 </mapper>

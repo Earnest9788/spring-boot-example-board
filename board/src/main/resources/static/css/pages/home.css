@@ -4,6 +4,12 @@
     padding: 1rem;
 }
 
+.article_search {
+    display: flex;
+    justify-content: flex-end;
+    padding: 1rem 0;
+}
+
 .article_list {
     padding: 1rem;
 }
